@@ -1,0 +1,10 @@
+{
+  "name": "calculadora-aspersion-drones",
+  "version": "1.0.0",
+  "description": "Calculadora de aspersión para drones agrícolas (Datos de Occidente)",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test tests/"
+  }
+}
