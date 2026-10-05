@@ -12,10 +12,10 @@ window.APP_CONFIG = {
 
   // URL pública de la calculadora (p. ej. https://USUARIO.github.io/calculadora-aspersion-drones/).
   // Se agrega al final del resumen que se copia a WhatsApp.
-  urlSitio: 'TODO_CONFIGURAR',
+  urlSitio: 'https://cmr911.github.io/calculadora-aspersion-drones/',
 
   // Repositorio de código (p. ej. https://github.com/USUARIO/calculadora-aspersion-drones).
-  urlRepositorio: 'TODO_CONFIGURAR',
+  urlRepositorio: 'https://github.com/Cmr911/calculadora-aspersion-drones',
 
   // Sitio o perfil de Datos de Occidente (web, LinkedIn, Instagram...).
   urlMarca: 'TODO_CONFIGURAR',
