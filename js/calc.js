@@ -419,7 +419,7 @@
     L.push('');
     L.push('RESULTADOS');
     L.push('- Mezcla total: ' + fmt(r.mezclaL, 2) + ' L');
-    L.push('- Cargas (tanqueadas): ' + textoCargas(r));
+    L.push('- ' + textoCargas(r));
     L.push('- Hectáreas por carga: ' + fmt(r.haPorTanque, 2) + ' ha');
     if (r.aguaPorTanqueL !== null) L.push('- Agua por carga completa: ' + fmt(r.aguaPorTanqueL, 2) + ' L');
 
@@ -444,7 +444,7 @@
       L.push('');
       L.push('COSTOS');
       L.push('- Productos: ' + fmtMoneda(r.costos.productos, moneda, dec) +
-        (r.costos.productosSinPrecio ? ' (faltan precios de ' + r.costos.productosSinPrecio + ')' : ''));
+        (r.costos.productosSinPrecio ? ' (sin precio: ' + r.costos.productosSinPrecio + (r.costos.productosSinPrecio === 1 ? ' producto)' : ' productos)') : ''));
       if (r.costos.operacion !== null) L.push('- Operación: ' + fmtMoneda(r.costos.operacion, moneda, dec));
       L.push('- Total: ' + fmtMoneda(r.costos.total, moneda, dec));
       L.push('- Por hectárea: ' + fmtMoneda(r.costos.porHa, moneda, dec));

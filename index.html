@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="Calculadora gratuita de aspersión para drones agrícolas: litros de mezcla, cargas, producto por carga, costos y tiempo estimado.">
+  <title>Calculadora de aspersión para drones · Datos de Occidente</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%231f6b3a' d='M16 2C16 2 6 14 6 20a10 10 0 0 0 20 0C26 14 16 2 16 2z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="encabezado">
+    <div class="contenedor">
+      <p class="marca">Datos de Occidente</p>
+      <h1>Calculadora de aspersión para drones</h1>
+      <p class="subtitulo">Litros de mezcla, cargas, producto por carga, costos y tiempo estimado de la labor.</p>
+    </div>
+  </header>
+
+  <div class="contenedor">
+    <p class="aviso-legal" role="note"><strong>Aviso:</strong> Herramienta de apoyo con fines informativos. Verifica siempre dosis y compatibilidad con la etiqueta del producto, un ingeniero agrónomo y la normativa aplicable. Sin garantía de ningún tipo.</p>
+  </div>
+
+  <main class="contenedor diseno">
+    <form id="form-calc" class="formulario" novalidate autocomplete="off">
+      <fieldset class="tarjeta">
+        <legend>1. Datos de la labor</legend>
+
+        <div class="campo">
+          <label for="area">Área a aplicar</label>
+          <div class="grupo-unidad">
+            <input id="area" name="area" type="text" inputmode="decimal" data-campo="area" aria-describedby="err-area av-area">
+            <label class="oculto" for="unidad-area">Unidad de área</label>
+            <select id="unidad-area" name="unidadArea">
+              <option value="ha" selected>ha</option>
+              <option value="plaza">plazas / fanegadas</option>
+            </select>
+          </div>
+          <p class="ayuda">1 plaza o fanegada = 6.400 m² = 0,64 ha.</p>
+          <p class="msg-error" id="err-area" aria-live="polite"></p>
+          <p class="msg-aviso" id="av-area" aria-live="polite"></p>
+        </div>
+
+        <div class="campo">
+          <label for="tanque">Capacidad útil del tanque (L)</label>
+          <input id="tanque" name="tanque" type="text" inputmode="decimal" data-campo="tanque" aria-describedby="ayuda-tanque err-tanque av-tanque">
+          <p class="ayuda" id="ayuda-tanque">Volumen real de mezcla que cargas, no el nominal.</p>
+          <p class="msg-error" id="err-tanque" aria-live="polite"></p>
+          <p class="msg-aviso" id="av-tanque" aria-live="polite"></p>
+        </div>
+      </fieldset>
+
+      <fieldset class="tarjeta">
+        <legend>2. Volumen de aplicación</legend>
+
+        <div class="selector-modo" role="radiogroup" aria-label="Forma de ingresar el volumen">
+          <label class="opcion"><input type="radio" name="modoVolumen" value="directo" checked> Lo conozco (L/ha)</label>
+          <label class="opcion"><input type="radio" name="modoVolumen" value="calculado"> Calcularlo con caudal</label>
+        </div>
+
+        <div class="campo" id="grupo-lha">
+          <label for="lha">Volumen de aplicación (L/ha)</label>
+          <input id="lha" name="lha" type="text" inputmode="decimal" data-campo="lha" aria-describedby="err-lha av-lha">
+          <p class="msg-error" id="err-lha" aria-live="polite"></p>
+          <p class="msg-aviso" id="av-lha" aria-live="polite"></p>
+        </div>
+
+        <div class="campo" id="grupo-caudal" hidden>
+          <label for="caudal">Caudal total (L/min)</label>
+          <input id="caudal" name="caudal" type="text" inputmode="decimal" data-campo="caudal" aria-describedby="err-caudal av-caudal">
+          <p class="msg-error" id="err-caudal" aria-live="polite"></p>
+          <p class="msg-aviso" id="av-caudal" aria-live="polite"></p>
+        </div>
+
+        <p class="ayuda nota-vuelo" id="nota-vuelo">Velocidad y ancho de faja son opcionales: solo se usan para el tiempo estimado.</p>
+
+        <div class="fila-2">
+          <div class="campo">
+            <label for="velocidad">Velocidad de vuelo</label>
+            <div class="grupo-unidad">
+              <input id="velocidad" name="velocidad" type="text" inputmode="decimal" data-campo="velocidad" aria-describedby="err-velocidad av-velocidad">
+              <label class="oculto" for="unidad-velocidad">Unidad de velocidad</label>
+              <select id="unidad-velocidad" name="unidadVelocidad">
+                <option value="kmh" selected>km/h</option>
+                <option value="ms">m/s</option>
+              </select>
+            </div>
+            <p class="msg-error" id="err-velocidad" aria-live="polite"></p>
+            <p class="msg-aviso" id="av-velocidad" aria-live="polite"></p>
+          </div>
+          <div class="campo">
+            <label for="ancho">Ancho de faja (m)</label>
+            <input id="ancho" name="ancho" type="text" inputmode="decimal" data-campo="ancho" aria-describedby="err-ancho av-ancho">
+            <p class="msg-error" id="err-ancho" aria-live="polite"></p>
+            <p class="msg-aviso" id="av-ancho" aria-live="polite"></p>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="tarjeta">
+        <legend>3. Productos de la mezcla</legend>
+        <p class="ayuda">Dosis por hectárea según la etiqueta o la receta del agrónomo. El precio es opcional.</p>
+        <div id="lista-productos"></div>
+        <p class="msg-error" id="err-productos" aria-live="polite"></p>
+        <button type="button" id="btn-agregar" class="btn btn-secundario">+ Agregar producto</button>
+      </fieldset>
+
+      <fieldset class="tarjeta">
+        <legend>4. Costos y tiempo (opcional)</legend>
+        <div class="fila-2">
+          <div class="campo">
+            <label for="costo-op" id="label-costo-op">Costo de operación por ha (COP)</label>
+            <input id="costo-op" name="costoOperacionHa" type="text" inputmode="decimal" data-campo="costoOperacionHa" aria-describedby="ayuda-costo-op err-costo-op av-costo-op">
+            <p class="ayuda" id="ayuda-costo-op">Sin separador de miles: 50000.</p>
+            <p class="msg-error" id="err-costo-op" aria-live="polite"></p>
+            <p class="msg-aviso" id="av-costo-op" aria-live="polite"></p>
+          </div>
+          <div class="campo">
+            <label for="eficiencia">Eficiencia de campo (%)</label>
+            <input id="eficiencia" name="eficiencia" type="text" inputmode="decimal" value="70" data-campo="eficiencia" aria-describedby="ayuda-eficiencia err-eficiencia av-eficiencia">
+            <p class="ayuda" id="ayuda-eficiencia">Descuenta recargas, cambios de batería y giros. Solo afecta el tiempo estimado.</p>
+            <p class="msg-error" id="err-eficiencia" aria-live="polite"></p>
+            <p class="msg-aviso" id="av-eficiencia" aria-live="polite"></p>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+
+    <section id="resultados" class="resultados tarjeta" aria-labelledby="titulo-resultados">
+      <h2 id="titulo-resultados">Resultados</h2>
+      <p id="estado" class="estado" aria-live="polite">Completa área, tanque y volumen de aplicación.</p>
+      <div id="resultados-contenido"></div>
+
+      <div class="acciones">
+        <button type="button" id="btn-copiar" class="btn" disabled>Copiar resumen</button>
+        <button type="button" id="btn-imprimir" class="btn btn-secundario" disabled>Imprimir / guardar PDF</button>
+        <button type="button" id="btn-limpiar" class="btn btn-terciario">Limpiar</button>
+      </div>
+      <p id="msg-copia" class="msg-copia" aria-live="polite"></p>
+
+      <details id="ver-resumen" class="desplegable">
+        <summary>Ver resumen en texto</summary>
+        <pre id="resumen-texto" class="resumen-texto"></pre>
+      </details>
+
+      <details class="desplegable">
+        <summary>¿Cómo se calcula?</summary>
+        <ul class="formulas">
+          <li><b>Área (ha)</b> = área ingresada; si está en plazas o fanegadas: × 0,64.</li>
+          <li><b>L/ha (modo caudal)</b> = 600 × caudal (L/min) ÷ (velocidad (km/h) × ancho de faja (m)). Si la velocidad está en m/s: km/h = m/s × 3,6.</li>
+          <li><b>Mezcla total (L)</b> = área (ha) × L/ha.</li>
+          <li><b>Hectáreas por carga</b> = capacidad del tanque (L) ÷ L/ha.</li>
+          <li><b>Cargas</b> = mezcla total ÷ capacidad del tanque, redondeado hacia arriba. La última carga puede ser parcial.</li>
+          <li><b>Producto por carga</b> = dosis (L/ha o kg/ha) × hectáreas por carga. mL y g se convierten a L y kg (÷ 1.000).</li>
+          <li><b>Producto total</b> = dosis × área (ha).</li>
+          <li><b>Agua por carga</b> = capacidad del tanque − productos líquidos por carga. Solo si todos los productos están en L o mL (no se asume densidad de sólidos).</li>
+          <li><b>Costo de producto</b> = producto total × precio por L o kg. <b>Costo total</b> = productos + costo de operación por ha × área. <b>Costo por ha</b> = costo total ÷ área.</li>
+          <li><b>Capacidad de campo teórica (ha/h)</b> = velocidad (km/h) × ancho de faja (m) ÷ 10.</li>
+          <li><b>Tiempo estimado (h)</b> = área ÷ (capacidad teórica × eficiencia ÷ 100). Es un estimado: no incluye traslados ni imprevistos.</li>
+          <li>Se calcula con precisión completa y solo se redondea al mostrar.</li>
+        </ul>
+      </details>
+
+      <p class="privacidad">Privacidad: todo se calcula en tu dispositivo. No guardamos ni enviamos tus datos; no hay cookies ni analítica.</p>
+    </section>
+  </main>
+
+  <div class="solo-impresion impresion">
+    <p class="marca">Datos de Occidente</p>
+    <pre id="resumen-impresion" class="resumen-texto"></pre>
+  </div>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <a id="btn-feedback" class="btn btn-secundario" hidden target="_blank" rel="noopener noreferrer">¿Qué otra herramienta te serviría?</a>
+      <p>Hecho por <span id="pie-marca">Datos de Occidente</span> · <span id="pie-codigo">Código abierto (MIT)</span></p>
+    </div>
+  </footer>
+
+  <a href="#resultados" id="barra-resumen" class="barra-resumen">Completa los datos para calcular</a>
+
+  <script src="js/config.js"></script>
+  <script src="js/calc.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
