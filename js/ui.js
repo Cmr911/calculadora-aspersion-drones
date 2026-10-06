@@ -51,7 +51,25 @@
     }
     enlazar($('pie-marca'), CFG.urlMarca, CFG.marca || 'Datos de Occidente');
     enlazar($('pie-codigo'), CFG.urlRepositorio, 'Código abierto (MIT)');
+    enlazarHerramientas();
     $('label-costo-op').textContent = 'Costo de operación por ha (' + MONEDA + ')';
+  }
+
+  // Enlaces cruzados: cada [data-herramienta] se muestra solo si su URL está configurada.
+  function enlazarHerramientas() {
+    var urls = { registro: CFG.urlRegistro, lector: CFG.urlLector };
+    document.querySelectorAll('[data-herramienta]').forEach(function (n) {
+      var u = urls[n.getAttribute('data-herramienta')];
+      var a = n.tagName === 'A' ? n : n.querySelector('a');
+      var ok = urlSegura(u);
+      if (a) { if (ok) a.href = u; else a.removeAttribute('href'); }
+      n.hidden = !ok;
+    });
+  }
+
+  function mostrarSiguientePaso(visible) {
+    var caja = $('siguiente-paso');
+    caja.hidden = !(visible && caja.querySelector('[data-herramienta]:not([hidden])'));
   }
 
   function enlazar(span, url, texto) {
@@ -344,6 +362,7 @@
     if (!res.ok) {
       btnCopiar.disabled = true;
       btnImprimir.disabled = true;
+      mostrarSiguientePaso(false);
       $('resumen-texto').textContent = '';
       $('resumen-impresion').textContent = '';
       var msg;
@@ -363,6 +382,7 @@
     contenido.appendChild(construirResultados(res));
     btnCopiar.disabled = false;
     btnImprimir.disabled = false;
+    mostrarSiguientePaso(true);
     var t = textoResumen(res);
     $('resumen-texto').textContent = t;
     $('resumen-impresion').textContent = t;

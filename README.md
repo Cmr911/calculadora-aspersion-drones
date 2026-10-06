@@ -85,6 +85,13 @@ Todo se calcula en tu dispositivo. La app no hace peticiones de red, no usa cook
 
 Herramienta de apoyo con fines informativos. Verifica siempre dosis y compatibilidad con la etiqueta del producto, un ingeniero agrónomo y la normativa aplicable. Sin garantía de ningún tipo.
 
+## Otras herramientas de Datos de Occidente
+
+Gratuitas y de código abierto; los enlaces aparecen también dentro de la app (pie de página y en el paso donde son útiles).
+
+- [Registro de aspersión](https://cmr911.github.io/registro-aspersion-drones/): guarda cada aplicación y entrega una constancia al cliente.
+- [Lector de bitácoras de vuelo](https://cmr911.github.io/lector-bitacoras-drones/): convierte la exportación de vuelos del dron en un reporte imprimible.
+
 ## Licencia
 
 [MIT](LICENSE) © Datos de Occidente

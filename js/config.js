@@ -17,6 +17,10 @@ window.APP_CONFIG = {
   // Repositorio de código (p. ej. https://github.com/USUARIO/calculadora-aspersion-drones).
   urlRepositorio: 'https://github.com/Cmr911/calculadora-aspersion-drones',
 
+  // Otras herramientas de Datos de Occidente (enlaces cruzados).
+  urlRegistro: 'https://cmr911.github.io/registro-aspersion-drones/',
+  urlLector: 'https://cmr911.github.io/lector-bitacoras-drones/',
+
   // Sitio o perfil de Datos de Occidente (web, LinkedIn, Instagram...).
   urlMarca: 'TODO_CONFIGURAR',
 

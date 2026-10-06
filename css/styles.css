@@ -202,6 +202,16 @@ input[aria-invalid="true"] { border-color: var(--error); background: var(--error
 
 .pie { border-top: 1px solid var(--borde); padding: 20px 0 24px; text-align: center; color: var(--texto-suave); }
 .pie p { margin: 12px 0 0; }
+.otras { margin: 16px auto 0; max-width: 560px; }
+.otras-titulo { font-weight: 600; color: var(--texto); }
+.otras ul { list-style: none; margin: 4px 0 0; padding: 0; }
+.otras li { margin: 0; padding: 6px 0; line-height: 1.5; }
+.otras a { font-weight: 600; }
+.siguiente { margin-top: 16px; padding: 12px 16px; border: 1px dashed var(--borde); border-radius: var(--radio); }
+.siguiente-titulo { margin: 0 0 4px; font-weight: 600; }
+.siguiente ul { margin: 0; padding-left: 20px; }
+.siguiente li { padding: 4px 0; }
+.siguiente a { font-weight: 600; }
 
 .barra-resumen {
   position: fixed; left: 0; right: 0; bottom: 0;

@@ -140,6 +140,14 @@
       </div>
       <p id="msg-copia" class="msg-copia" aria-live="polite"></p>
 
+      <div id="siguiente-paso" class="siguiente" hidden>
+        <p class="siguiente-titulo">Después de aplicar</p>
+        <ul>
+          <li data-herramienta="registro"><a target="_blank" rel="noopener noreferrer">Registra la aplicación</a>: cliente, productos y condiciones, con una constancia para tu cliente.</li>
+          <li data-herramienta="lector">¿Tienes la exportación de vuelos del dron? <a target="_blank" rel="noopener noreferrer">Conviértela en un reporte de vuelos</a>.</li>
+        </ul>
+      </div>
+
       <details id="ver-resumen" class="desplegable">
         <summary>Ver resumen en texto</summary>
         <pre id="resumen-texto" class="resumen-texto"></pre>
@@ -175,6 +183,13 @@
   <footer class="pie">
     <div class="contenedor">
       <a id="btn-feedback" class="btn btn-secundario" hidden target="_blank" rel="noopener noreferrer">¿Qué otra herramienta te serviría?</a>
+      <nav class="otras" aria-label="Otras herramientas de Datos de Occidente">
+        <p class="otras-titulo">Otras herramientas gratuitas</p>
+        <ul>
+          <li data-herramienta="registro"><a target="_blank" rel="noopener noreferrer">Registro de aspersión</a> · guarda cada aplicación y entrega una constancia al cliente</li>
+          <li data-herramienta="lector"><a target="_blank" rel="noopener noreferrer">Lector de bitácoras</a> · convierte la exportación de vuelos en un reporte</li>
+        </ul>
+      </nav>
       <p>Hecho por <span id="pie-marca">Datos de Occidente</span> · <span id="pie-codigo">Código abierto (MIT)</span></p>
     </div>
   </footer>
